@@ -1,0 +1,28 @@
+# Gizli ayarlar (örneği: inc/ayar.ornek.php)
+inc/ayar.php
+
+# Yerel veritabanı
+veri/*
+!veri/.htaccess
+
+# Yönetim panelinden yüklenen ürün fotoğrafları
+assets/yukleme/*
+!assets/yukleme/.htaccess
+
+# Artık kullanılmayan eski statik sayfalar ve eski not dosyası
+/index.html
+/giris.html
+/urun.html
+/sepet.html
+/hakkimizda.html
+/iletisim.html
+/OKU-BENI.txt
+
+# Sistem / editör dosyaları
+.DS_Store
+Thumbs.db
+desktop.ini
+.vscode/
+.idea/
+*.log
+.claude/

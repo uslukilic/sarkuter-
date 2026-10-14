@@ -1,0 +1,35 @@
+# --- Şarküteri sitesi: Apache ayarları ---
+DirectoryIndex index.php
+Options -Indexes
+AddDefaultCharset UTF-8
+
+RewriteEngine On
+
+# HTTPS'e yönlendirme: alan adınızda SSL sertifikası etkinleşince alttaki iki satırın başındaki # işaretini kaldırın.
+# RewriteCond %{HTTPS} off
+# RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [R=301,L]
+
+# Gizli klasörler ve dosyalar tarayıcıdan açılamaz
+RewriteRule ^(inc|veri)(/|$) - [F,L]
+RewriteRule (^|/)\.(?!well-known/) - [F,L]
+RewriteRule ^(router\.php|baslat\.bat|.*\.(sqlite|sql|log|bak|md|txt))$ - [F,L]
+
+<IfModule mod_headers.c>
+  Header always set X-Content-Type-Options "nosniff"
+  Header always set Referrer-Policy "same-origin"
+  Header always set Permissions-Policy "camera=(), microphone=(), geolocation=()"
+</IfModule>
+
+<IfModule mod_expires.c>
+  ExpiresActive On
+  ExpiresByType text/css "access plus 7 days"
+  ExpiresByType application/javascript "access plus 7 days"
+  ExpiresByType image/svg+xml "access plus 30 days"
+  ExpiresByType image/jpeg "access plus 30 days"
+  ExpiresByType image/png "access plus 30 days"
+  ExpiresByType image/webp "access plus 30 days"
+</IfModule>
+
+<IfModule mod_deflate.c>
+  AddOutputFilterByType DEFLATE text/html text/css application/javascript image/svg+xml
+</IfModule>
